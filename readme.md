@@ -3,4 +3,4 @@
 
 This is preview of the work
 
-![screenshot of the html work](img/prev.png)
+[link of the work](http://127.0.0.1:5500/index.html)
