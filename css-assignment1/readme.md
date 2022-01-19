@@ -1,4 +1,4 @@
-# This is my first project css  
+# This is my first css project   
 **https://app.patika.dev/moduller/css/odev1**
 
 This is preview of the work
