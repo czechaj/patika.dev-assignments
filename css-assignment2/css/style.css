@@ -1,0 +1,40 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 11pt;
+}
+
+.center{
+    text-align: center;
+}
+ 
+
+.card1{
+    width: 90%;
+    background-color: rgb(237, 237, 237);
+    margin:0 auto;
+    height: 80px;
+}
+
+table{
+    width: 90%;
+    margin: 0 auto;
+}
+.col1{
+    width: 32%;
+background-color: rgb(131, 247, 249);
+}
+
+.col2{
+    width: 19%;
+    background-color: rgb(130, 225, 227)
+}
+
+.col3{
+    width: 39%;
+    background-color: rgb(107, 190, 191)
+}
+
+.footer{
+    font-size: 8pt;
+}
