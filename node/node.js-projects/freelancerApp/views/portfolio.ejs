@@ -1,0 +1,301 @@
+<%- include("./partials/_header") %>
+<section class="page-section portfolio mt-5" id="portfolio">
+  <div class="container">
+    <!-- Portfolio Section Heading-->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >
+      Portfolio
+    </h2>
+    <div class="text-end me-3">
+      <a data-bs-toggle="modal" data-bs-target="#createProject"
+        ><button class="btn btn-outline-success">Add new project</button></a
+      >
+    </div>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <!-- Portfolio Grid Items-->
+    <div class="row justify-content-center">
+      <!-- Portfolio Item 1-->
+      <% for(let i=0; i < projects.length; i++) { %>
+      <div class="col-md-4 col-lg-3 mb-5">
+        <div
+          class="portfolio-item mx-auto"
+          data-bs-toggle="modal"
+          data-bs-target="#portfolioModal<%= i %>"
+        >
+          <div
+            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
+          >
+            <div class="portfolio-item-caption-content text-center text-white">
+              <i class="fas fa-plus fa-3x"></i>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <img
+              class="img-fluid"
+              src="<%= projects[i].imageURL %>"
+              alt="..."
+            />
+            <h2 class="mt-3"><%= projects[i].name %></h2>
+            <p><%= projects[i].overview %></p>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Modals-->
+<!-- Portfolio Modal-->
+
+<% for(let i = 0; i < projects.length; i++) { %>
+<div
+  class="portfolio-modal modal fade"
+  id="portfolioModal<%= i %>"
+  tabindex="-1"
+  aria-labelledby="portfolioModal1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button
+          class="btn-close"
+          type="button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center pb-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- Portfolio Modal - Title-->
+              <h2
+                class="portfolio-modal-title text-secondary text-uppercase mb-0"
+              >
+                <%= projects[i].name %>
+              </h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <!-- Portfolio Modal - Image-->
+              <img
+                class="img-fluid rounded mb-5"
+                src="<%= projects[i].imageURL %>"
+                alt="..."
+              />
+              <!-- Portfolio Modal - Text-->
+              <p class="mb-4"><%= projects[i].description %></p>
+
+              <a data-bs-toggle="modal" data-bs-target="#editProject<%=i%>"
+                ><button class="btn btn-primary">
+                  <i class="fa-solid fa-pen"></i>
+                  Edit Project
+                </button>
+              </a>
+
+              <a href="/portfolio/<%= projects[i]._id %>?_method=delete"
+                ><button
+                  class="btn btn-danger"
+                  onclick="return confirm('Are you sure')"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                  Delete project
+                </button></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<!-- Create Project Modal -->
+<div
+  class="portfolio-modal modal fade"
+  id="createProject"
+  tabindex="-1"
+  aria-labelledby="portfolioModal1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button
+          class="btn-close"
+          type="button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center pb-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- Portfolio Modal - Title-->
+              <h2
+                class="portfolio-modal-title text-secondary text-uppercase mb-0"
+              >
+                Create project
+              </h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <!-- Portfolio Modal - Image-->
+              <div class="text-start">
+                <form action="/portfolio" method="post">
+                  <label>Project Name</label
+                  ><input name="name" type="text" class="form-control mb-2" />
+                  <label>Project Overview</label
+                  ><input
+                    name="overview"
+                    type="text"
+                    class="form-control mb-2"
+                  />
+                  <label>Project Description</label
+                  ><input
+                    name="description"
+                    type="text"
+                    class="form-control mb-2"
+                  />
+                  <label> Project Image </label
+                  ><input
+                    name="imageURL"
+                    type="text"
+                    class="mb-2 form-control"
+                  />
+                  <div class="text-center">
+                    <button class="btn btn-primary text-center" type="submit">
+                      <i class="fa-solid fa-plus"></i>
+                      Create project
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Create Project Modal-end -->
+
+<!-- Edit Project Modal -->
+<% for(let i=0; i < projects.length; i++){ %>
+<div
+  class="portfolio-modal modal fade"
+  id="editProject<%= i %>"
+  tabindex="-1"
+  aria-labelledby="portfolioModal1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button
+          class="btn-close"
+          type="button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center pb-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- Portfolio Modal - Title-->
+              <h2
+                class="portfolio-modal-title text-secondary text-uppercase mb-0"
+              >
+                Edit project
+              </h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <!-- Portfolio Modal - Image-->
+              <div class="text-start">
+                <form
+                  action="/portfolio/<%= projects[i]._id %>?_method=PUT"
+                  method="post"
+                >
+                  <label>Project Name</label
+                  ><input
+                    name="name"
+                    type="text"
+                    class="form-control mb-2"
+                    value="<%= projects[i].name %>"
+                  />
+                  <label>Project Overview</label
+                  ><input
+                    name="overview"
+                    type="text"
+                    class="form-control mb-2"
+                    value="<%= projects[i].overview %>"
+                  />
+                  <label>Project Description</label
+                  ><textarea
+                    rows="10"
+                    name="description"
+                    type="text"
+                    class="form-control mb-2"
+                  >
+ <%= projects[i].description %> </textarea
+                  >
+
+                  <label> Project Image | Please insert a new image url </label>
+                  <div class="d-flex justify-content-between">
+                    <input
+                      name="imageURL"
+                      type="text"
+                      class="mb-2 w-100"
+                      value="<%= projects[i].imageURL %>"
+                      style="height: 5vh;"
+                    />
+                    <img src="<%= projects[i].imageURL %>" alt="" />
+                  </div>
+
+                  <div class="text-center">
+                    <button class="btn btn-primary text-center" type="submit">
+                      <i class="fa-solid fa-plus"></i>
+                      Update Project
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+<!-- Edit Project Modal-end -->
+
+<%- include('./partials/_footer') %>
