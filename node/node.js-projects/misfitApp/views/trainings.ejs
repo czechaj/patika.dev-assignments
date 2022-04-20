@@ -1,0 +1,79 @@
+<%- include('./partials/_header') %> <%- include('./partials/_nav') %>
+
+<div class="back_re">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          <h2>Our Trainers</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- trainers -->
+
+<div class="trainers">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="titlepage">
+          <p>Lorem Ipsum available, but the majority have suffered</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <% for(let i = 0; i < users.length; i++){ %>
+      <div class="col-md-4">
+        <div id="trai" class="trainer_box">
+          <div class="trainer_img">
+            <figure><img src="<%= users[i].imageURL %>" alt="#" /></figure>
+          </div>
+          <div class="trainer">
+            <h3><%= users[i].name %></h3>
+            <p><%= users[i].role %></p>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<div class="col-sm-10 mx-auto mt-5">
+  <div class="row">
+    <% for(let i = 0; i < trainings.length; i++){ %>
+    <div class="col-sm-4">
+      <div class="card">
+        <img
+          src="<%= trainings[i].imageURL %>"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title"><%= trainings[i].name %></h5>
+          <hr />
+          <p class="card-text">
+            <%= trainings[i].description.substring(0,120) %>...
+          </p>
+          <hr />
+          <p class="card-text">
+            <small class="text-muted"
+              ><%= trainings[i].createdAt.toString().substring(4,15) %></small
+            >
+          </p>
+
+          <a href="/trainings/<%= trainings[i].slug %>">
+            <button type="submit" class="btn btn-outline-primary">
+              See details
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<!-- end trainers -->
+<!--  footer -->
+<%- include('./partials/_footer') %>

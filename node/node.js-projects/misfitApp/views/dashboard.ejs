@@ -1,0 +1,144 @@
+<%- include('./partials/_header') %> <%- include('./partials/_nav') %> <%
+if(user.role === 'admin'){ %>
+<div>hi admin</div>
+
+<div class="col-sm-8 mx-auto">
+  <table class="table table-striped table-hover table-bordered mb-5">
+    <h1>users</h1>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% for(let i = 0; i < users.length; i++){ %>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= users[i].id %></td>
+        <td><%= users[i].name %></td>
+        <td><%= users[i].email %></td>
+        <td><%= users[i].role %></td>
+        <td>
+          <form
+            action="/users/<%= users[i]._id %>?_method=DELETE"
+            method="post"
+          >
+            <input hidden name="role" value="<%= user.role %>" type="text" />
+            <button class="btn btn-outline-danger">Delete User</button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<% } else{ %>
+
+<div class="back_re">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          <h2>Your trainings</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="display-4 ml-5"> <%= user.role %> </span>
+<!-- gallery -->
+<div class="gallery">
+  <% if(user.role === "fitness-instructor"){ %>
+  <div class="text-right mr-5">
+    <a href="dashboard/createTraining">
+      <button
+        class="mt-5 btn btn-light"
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#createTraining"
+      >
+        Add training
+      </button>
+    </a>
+  </div>
+  <% } %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <% if(user.role === "fitness-instructor"){ %>
+        <div class="card-group">
+          <% for(let i=0; i < trainings.length; i++){ %>
+          <div class="card col-sm-4">
+            <img
+              src="<%= trainings[i].imageURL %>"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= trainings[i].name %></h5>
+              <p class="card-text">
+                <%= trainings[i].description.substring(0,100) %>
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+            <form method="post" action="/trainings/deleteTraining">
+              <input
+                type="hidden"
+                name="training_id"
+                value="<%= trainings[i]._id %>"
+              />
+              <button class="btn btn-lg btn-danger text-white">
+                <span class="fw-bold"> Delete training</span>
+              </button>
+            </form>
+          </div>
+          <% } %>
+        </div>
+        <% } %> <% if(user.role === "client"){ %>
+        <div class="card-group">
+          <% for(let i=0; i < user.trainings.length; i++){ %>
+          <div class="card col-sm-4">
+            <img
+              src="<%= user.trainings[i].imageURL %>"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= user.trainings[i].name %></h5>
+              <p class="card-text"><%= user.trainings[i].description %></p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
+            </div>
+
+            <form method="post" action="/trainings/releaseTraining">
+              <input
+                type="hidden"
+                name="training_id"
+                value="<%= user.trainings[i]._id %>"
+              />
+              <button class="btn btn-lg btn-danger text-white">
+                <span class="fw-bold"> Release training</span>
+              </button>
+            </form>
+          </div>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end gallery -->
+
+<% } %> <%- include('./partials/_footer') %>
