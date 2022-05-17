@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+  background-color: rgb(49, 59, 59);
+  min-height: 100vh;
+}
+
+.header-text {
+  color: white;
+  padding-top: 3vh;
+  height: 15vh;
+}
+
+.input-section {
+  background-color: rgb(255, 255, 255);
+
+}
+
+input {
+  margin-right: 1rem
+}
+
+.output {
+  color: aliceblue;
+  margin-top: 4vh;
+
+}
+
+.output-text {
+  text-align: left;
+  word-spacing: 0.1rem;
+  text-indent: 3rem;
+}
