@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: rgb(243, 255, 211);
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  min-height: 10vh;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.help {
+
+  position: relative;
+  left: 10vw;
+
+}
+
+section {
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.input,
+.output {
+  background-color: rgb(239, 255, 199);
+  width: 39vw;
+  height: 80vh;
+  resize: none;
+  border-right: 4px solid purple;
+
+}
+
+.output {
+  overflow-y: scroll;
+  text-align: left;
+}
