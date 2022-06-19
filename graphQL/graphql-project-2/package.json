@@ -1,0 +1,19 @@
+{
+  "name": "graphql-mutations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.9.0",
+    "apollo-server-core": "^3.9.0",
+    "graphql": "^16.5.0",
+    "nanoid": "^4.0.0"
+  }
+}
